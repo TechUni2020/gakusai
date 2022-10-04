@@ -15,9 +15,10 @@
 
 ### フォルダ構成
 
-- pages: ルーティングとなる。pages/about.tsx とすれば、それが localhost:3000/about になる
 - components: プロジェクトの規模的に、そこまで大きくならないと思うので、基本的にはここに。
   - ui: プロジェクトを通して汎用的なコンポーネントはここに
+- constants: 定数をここに
+- pages: ルーティングとなる。pages/about.tsx とすれば、それが localhost:3000/about になる
 - styles: CSSmodules で書いたスタイルをここに
 
 あとは必要に応じて追加していく
