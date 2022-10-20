@@ -1,8 +1,8 @@
-import { Input } from "@mantine/core";
+import { Box } from "@mantine/core";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-  return <Input size="lg" color="red" />;
+  return <Box>Hello World</Box>;
 };
 
 export default Home;
