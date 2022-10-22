@@ -52,9 +52,9 @@ export const ListPage: FC = (): JSX.Element => {
   ];
   return (
     <>
-      <Box mt={24}>
-        <Center>商品を以下から注文できるオーダーシステムです</Center>
-        <Center>※お支払いは、、、</Center>
+      <Box mt={24} mx={24}>
+        <Center>以下から商品を注文できます。</Center>
+        <Center>※お支払いは、、、。</Center>
       </Box>
       <Title order={3} mx={24}>
         Menu

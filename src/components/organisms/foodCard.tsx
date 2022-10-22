@@ -21,13 +21,15 @@ export const FoodCard: FC<Props> = ({ food }): JSX.Element => {
   );
 };
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   card: {
-    width: "200px",
+    width: "48%",
+    [theme.fn.largerThan("xs")]: {
+      width: "200px",
+    },
     background: "orange",
   },
   image: {
-    width: "full",
     background: "white",
   },
   docs: {
