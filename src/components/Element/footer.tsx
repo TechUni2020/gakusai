@@ -1,7 +1,7 @@
 import { Center, createStyles, Divider, Stack } from "@mantine/core";
 import { FC } from "react";
 
-export const Footer: FC = (): JSX.Element => {
+export const Footer: FC = () => {
   const { classes } = useStyles();
   return (
     <div className={classes.container}>

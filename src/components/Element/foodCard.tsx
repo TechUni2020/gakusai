@@ -1,12 +1,12 @@
 import { Card, createStyles, Image, Text, Title } from "@mantine/core";
 import { FC } from "react";
-import { Food } from "../pages/listPage";
+import { Food } from "../Page/listPage";
 
 type Props = {
   food: Food;
 };
 
-export const FoodCard: FC<Props> = ({ food }): JSX.Element => {
+export const FoodCard: FC<Props> = ({ food }) => {
   const { classes } = useStyles();
   return (
     <Card className={classes.card} shadow="sm" p="lg" radius="md" withBorder>

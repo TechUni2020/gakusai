@@ -1,6 +1,7 @@
 import { Center, Divider, Title } from "@mantine/core";
+import { FC } from "react";
 
-export const Header = () => {
+export const Header: FC = () => {
   return (
     <>
       <Center>

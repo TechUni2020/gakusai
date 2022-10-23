@@ -1,6 +1,6 @@
 import { Box, Center, Group, Title } from "@mantine/core";
 import { FC } from "react";
-import { FoodCard } from "../organisms/foodCard";
+import { FoodCard } from "../Element/foodCard";
 
 export type Food = {
   name: string;
@@ -8,6 +8,7 @@ export type Food = {
   price: string;
 };
 export const ListPage: FC = (): JSX.Element => {
+  //仮のデータ
   const foods: Food[] = [
     {
       name: "Banana",
@@ -50,6 +51,7 @@ export const ListPage: FC = (): JSX.Element => {
       price: "600",
     },
   ];
+
   return (
     <>
       <Box mt={24} mx={24}>
@@ -60,8 +62,8 @@ export const ListPage: FC = (): JSX.Element => {
         Menu
       </Title>
       <Group m={24} my={12} spacing={12}>
-        {foods.map((food: Food) => (
-          <FoodCard key={food.name} food={food} />
+        {foods.map((food: Food, i: number) => (
+          <FoodCard key={i} food={food} />
         ))}
       </Group>
       <br />
