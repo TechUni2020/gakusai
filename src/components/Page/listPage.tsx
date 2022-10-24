@@ -1,6 +1,8 @@
 import { Box, Center, Group, Title } from "@mantine/core";
-import { FC } from "react";
+import {FC, useEffect} from "react";
 import { FoodCard } from "../Element/foodCard";
+import { collection, getDocs } from 'firebase/firestore';
+import {db} from "@/lib/firebase";
 
 export type Food = {
   name: string;
@@ -8,6 +10,18 @@ export type Food = {
   price: string;
 };
 export const ListPage: FC = (): JSX.Element => {
+
+  useEffect(()=>{
+    (async ()=>{
+      const querySnapshot = await getDocs(collection(db, "menu"));
+      querySnapshot.forEach((doc) => {
+        const data = doc.data()
+        console.log(`${doc.id} => ${doc.data()}`);
+        console.log(data.name)
+      });
+    })()
+  })
+
   //仮のデータ
   const foods: Food[] = [
     {
