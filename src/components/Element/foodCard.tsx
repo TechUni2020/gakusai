@@ -11,7 +11,7 @@ export const FoodCard: FC<Props> = ({ food }) => {
   return (
     <Card className={classes.card} shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section withBorder>
-        <Image className={classes.image} src={food.img} alt="商品の画像" />
+        <Image className={classes.image} src={food.image} alt="商品の画像" />
       </Card.Section>
       <div className={classes.docs}>
         <Title order={4}>{food.name}</Title>

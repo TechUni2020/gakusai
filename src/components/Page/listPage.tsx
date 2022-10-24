@@ -1,70 +1,12 @@
 import { Box, Center, Group, Title } from "@mantine/core";
 import {FC, useEffect} from "react";
 import { FoodCard } from "../Element/foodCard";
-import { collection, getDocs } from 'firebase/firestore';
-import {db} from "@/lib/firebase";
+import {Menu, useFetchMenuList} from "@/hooks/useFetchMenuList";
 
-export type Food = {
-  name: string;
-  img: string;
-  price: string;
-};
+
 export const ListPage: FC = (): JSX.Element => {
-
-  useEffect(()=>{
-    (async ()=>{
-      const querySnapshot = await getDocs(collection(db, "menu"));
-      querySnapshot.forEach((doc) => {
-        const data = doc.data()
-        console.log(`${doc.id} => ${doc.data()}`);
-        console.log(data.name)
-      });
-    })()
-  })
-
-  //仮のデータ
-  const foods: Food[] = [
-    {
-      name: "Banana",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "100",
-    },
-    {
-      name: "Chocolate",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "200",
-    },
-    {
-      name: "Ramen",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "600",
-    },
-    {
-      name: "Curry",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "500",
-    },
-    {
-      name: "Takoyaki",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "300",
-    },
-    {
-      name: "Yakisoba",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "400",
-    },
-    {
-      name: "Ikayaki",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "300",
-    },
-    {
-      name: "Udon",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "600",
-    },
-  ];
+  const {menuList} = useFetchMenuList()
+    console.log(menuList)
 
   return (
     <>
@@ -76,8 +18,8 @@ export const ListPage: FC = (): JSX.Element => {
         Menu
       </Title>
       <Group m={24} my={12} spacing={12}>
-        {foods.map((food: Food, i: number) => (
-          <FoodCard key={i} food={food} />
+        {menuList.map((menu: Menu) => (
+          <FoodCard key={menu.id} food={menu} />
         ))}
       </Group>
       <br />
