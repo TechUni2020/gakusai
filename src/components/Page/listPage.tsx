@@ -1,6 +1,6 @@
 import { Box, Center, Group, Title } from "@mantine/core";
 import {FC} from "react";
-import { FoodCard } from "../Element/foodCard";
+import { MenuCard } from "../Element/MenuCard";
 import {useFetchMenuList} from "@/hooks/useFetchMenuList";
 import {Menu} from "@/type/Menu"
 
@@ -19,7 +19,7 @@ export const ListPage: FC = () => {
       </Title>
       <Group m={24} my={12} spacing={12}>
         {filteredMenuList.map((menu: Menu) => (
-          <FoodCard key={menu.id} menu={menu} />
+          <MenuCard key={menu.id} menu={menu} />
         ))}
       </Group>
       <br />

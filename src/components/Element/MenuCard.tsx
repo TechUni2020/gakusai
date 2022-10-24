@@ -6,7 +6,7 @@ type Props = {
   menu: Menu;
 };
 
-export const FoodCard: FC<Props> = ({ menu }) => {
+export const MenuCard: FC<Props> = ({ menu }) => {
   const { classes } = useStyles();
   return (
     <Card className={classes.card} shadow="sm" p="lg" radius="md" withBorder>
