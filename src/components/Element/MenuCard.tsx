@@ -23,12 +23,8 @@ export const MenuCard: FC<Props> = ({ menu }) => {
   );
 };
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   card: {
-    width: "48%",
-    [theme.fn.largerThan("xs")]: {
-      width: "200px",
-    },
     background: "orange",
   },
   image: {

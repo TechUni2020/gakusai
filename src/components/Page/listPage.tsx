@@ -1,4 +1,4 @@
-import { Box, Center, Group, Title } from "@mantine/core";
+import {Box, Center, SimpleGrid, Title} from "@mantine/core";
 import {FC} from "react";
 import { MenuCard } from "../Element/MenuCard";
 import {useFetchMenuList} from "@/hooks/useFetchMenuList";
@@ -17,11 +17,19 @@ export const ListPage: FC = () => {
       <Title order={3} mx={24}>
         Menu
       </Title>
-      <Group m={24} my={12} spacing={12}>
+      <SimpleGrid
+        cols={4}
+        mx={24}
+        breakpoints={[
+            { maxWidth: 'md', cols: 4, spacing: 'md' },
+            { maxWidth: 'sm', cols: 3, spacing: 'sm' },
+            { maxWidth: 'xs', cols: 2, spacing: 'sm' },
+        ]}
+      >
         {filteredMenuList.map((menu: Menu) => (
           <MenuCard key={menu.id} menu={menu} />
         ))}
-      </Group>
+      </SimpleGrid>
       <br />
     </>
   );
