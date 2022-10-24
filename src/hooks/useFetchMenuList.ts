@@ -2,8 +2,9 @@ import {useEffect, useState} from 'react'
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "@/lib/firebase";
 import {Menu} from "@/type/Menu";
+import {COLLECTION_PATH} from "@/lib/$path";
 
-
+const {MENU_PATH} = COLLECTION_PATH
 /**
  * FireStore から商品一覧に必要なListを持ってくる
  */
@@ -14,11 +15,15 @@ export const useFetchMenuList = () => {
     useEffect(()=>{
         (async ()=>{
 
-            const querySnapshot = await getDocs(collection(db, "menu"));
+            const querySnapshot = await getDocs(collection(db, MENU_PATH));
 
             const menuList: Array<Menu> = []
             querySnapshot.forEach((doc) => {
                 const id = doc.id
+                /*
+                 * Fix Me https://zenn.dev/arark/articles/9ef42ee801050e0f9b88
+                 * FirestoreDataConverterを使った方がいい
+                 */
                 const {
                     name,
                     price,
@@ -26,7 +31,7 @@ export const useFetchMenuList = () => {
                     isSoldOut,
                     image,
                     description
-                } = doc.data()
+                } = doc.data() as Omit<Menu, 'id'>
 
                 menuList.push({
                     id,

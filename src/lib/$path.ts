@@ -10,3 +10,9 @@ export const staticPath = {
 } as const
 
 export type StaticPath = typeof staticPath
+
+export const COLLECTION_PATH = {
+  USER_PATH: 'user',
+  MENU_PATH: 'menu',
+  CATEGORY_PATH: 'category'
+}
