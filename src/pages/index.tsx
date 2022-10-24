@@ -1,8 +1,13 @@
-import { Box } from "@mantine/core";
+import { PageLayout } from "@/components/Layout/pageLayout";
+import { ListPage } from "@/components/Page/listPage";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-  return <Box>Hello World</Box>;
+  return (
+    <PageLayout>
+      <ListPage />
+    </PageLayout>
+  );
 };
 
 export default Home;
