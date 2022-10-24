@@ -1,13 +1,13 @@
 import { Box, Center, Group, Title } from "@mantine/core";
-import {FC, useEffect} from "react";
+import {FC} from "react";
 import { FoodCard } from "../Element/foodCard";
-import {Menu, useFetchMenuList} from "@/hooks/useFetchMenuList";
+import {useFetchMenuList} from "@/hooks/useFetchMenuList";
+import {Menu} from "@/type/Menu"
 
-
-export const ListPage: FC = (): JSX.Element => {
+export const ListPage: FC = () => {
   const {menuList} = useFetchMenuList()
-    console.log(menuList)
-
+  // 売り切れをfilterして表示しない
+  const filteredMenuList =  menuList.filter(menu => !menu.isSoldOut)
   return (
     <>
       <Box mt={24} mx={24}>
@@ -18,8 +18,8 @@ export const ListPage: FC = (): JSX.Element => {
         Menu
       </Title>
       <Group m={24} my={12} spacing={12}>
-        {menuList.map((menu: Menu) => (
-          <FoodCard key={menu.id} food={menu} />
+        {filteredMenuList.map((menu: Menu) => (
+          <FoodCard key={menu.id} menu={menu} />
         ))}
       </Group>
       <br />
