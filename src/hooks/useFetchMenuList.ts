@@ -36,7 +36,7 @@ export const useFetchMenuList = () => {
 
       setMenuList(list);
     })();
-  }, [menuList]);
+  }, []);
 
   return { menuList };
 };
