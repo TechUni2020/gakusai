@@ -1,32 +1,30 @@
 import { Card, createStyles, Image, Text, Title } from "@mantine/core";
 import { FC } from "react";
-import { Food } from "../Page/listPage";
+import { Menu } from "@/type/Menu";
 
 type Props = {
-  food: Food;
+  menu: Menu;
 };
 
-export const FoodCard: FC<Props> = ({ food }) => {
+export const MenuCard: FC<Props> = ({ menu }) => {
   const { classes } = useStyles();
   return (
     <Card className={classes.card} shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section withBorder>
-        <Image className={classes.image} src={food.img} alt="商品の画像" />
+        <Image className={classes.image} src={menu.image} alt="商品の画像" />
       </Card.Section>
       <div className={classes.docs}>
-        <Title order={4}>{food.name}</Title>
-        <Text>¥{food.price}</Text>
+        <Title order={4}>{menu.name}</Title>
+        <Text>¥{menu.price}</Text>
+        {/* Todo 後でstylingする */}
+        <Text>{menu.description}</Text>
       </div>
     </Card>
   );
 };
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   card: {
-    width: "48%",
-    [theme.fn.largerThan("xs")]: {
-      width: "200px",
-    },
     background: "orange",
   },
   image: {

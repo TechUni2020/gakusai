@@ -1,57 +1,13 @@
-import { Box, Center, Group, Title } from "@mantine/core";
+import { Box, Center, SimpleGrid, Title } from "@mantine/core";
 import { FC } from "react";
-import { FoodCard } from "../Element/foodCard";
+import { MenuCard } from "@/components/Element/MenuCard";
+import { useFetchMenuList } from "@/hooks/useFetchMenuList";
+import { Menu } from "@/type/Menu";
 
-export type Food = {
-  name: string;
-  img: string;
-  price: string;
-};
-export const ListPage: FC = (): JSX.Element => {
-  //仮のデータ
-  const foods: Food[] = [
-    {
-      name: "Banana",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "100",
-    },
-    {
-      name: "Chocolate",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "200",
-    },
-    {
-      name: "Ramen",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "600",
-    },
-    {
-      name: "Curry",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "500",
-    },
-    {
-      name: "Takoyaki",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "300",
-    },
-    {
-      name: "Yakisoba",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "400",
-    },
-    {
-      name: "Ikayaki",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "300",
-    },
-    {
-      name: "Udon",
-      img: "https://eiyoushi-hutaba.com/wp-content/uploads/2021/04/%E3%82%A8%E3%83%93%E3%83%95%E3%83%A9%E3%82%A4-1024x1024.png",
-      price: "600",
-    },
-  ];
-
+export const ListPage: FC = () => {
+  const { menuList } = useFetchMenuList();
+  // 売り切れをfilterして表示しない
+  const filteredMenuList = menuList.filter((menu) => !menu.isSoldOut);
   return (
     <>
       <Box mt={24} mx={24}>
@@ -61,11 +17,19 @@ export const ListPage: FC = (): JSX.Element => {
       <Title order={3} mx={24}>
         Menu
       </Title>
-      <Group m={24} my={12} spacing={12}>
-        {foods.map((food: Food, i: number) => (
-          <FoodCard key={i} food={food} />
+      <SimpleGrid
+        cols={4}
+        mx={24}
+        breakpoints={[
+          { maxWidth: "md", cols: 4, spacing: "md" },
+          { maxWidth: "sm", cols: 3, spacing: "sm" },
+          { maxWidth: "xs", cols: 2, spacing: "sm" },
+        ]}
+      >
+        {filteredMenuList.map((menu: Menu) => (
+          <MenuCard key={menu.id} menu={menu} />
         ))}
-      </Group>
+      </SimpleGrid>
       <br />
     </>
   );
