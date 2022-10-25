@@ -1,6 +1,6 @@
 import { Card, createStyles, Image, Text, Title } from "@mantine/core";
 import { FC } from "react";
-import {Menu} from "@/type/Menu";
+import { Menu } from "@/type/Menu";
 
 type Props = {
   menu: Menu;

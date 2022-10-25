@@ -1,18 +1,12 @@
 export const pagesPath = {
-  $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash })
-}
+  $url: (url?: { hash?: string }) => ({ pathname: "/" as const, hash: url?.hash }),
+};
 
-export type PagesPath = typeof pagesPath
+export type PagesPath = typeof pagesPath;
 
 export const staticPath = {
-  favicon_ico: '/favicon.ico',
-  vercel_svg: '/vercel.svg'
-} as const
+  favicon_ico: "/favicon.ico",
+  vercel_svg: "/vercel.svg",
+} as const;
 
-export type StaticPath = typeof staticPath
-
-export const COLLECTION_PATH = {
-  USER_PATH: 'user',
-  MENU_PATH: 'menu',
-  CATEGORY_PATH: 'category'
-}
+export type StaticPath = typeof staticPath;
