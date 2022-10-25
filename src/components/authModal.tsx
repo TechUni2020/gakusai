@@ -1,15 +1,18 @@
 import { COLLECTION_PATH } from "@/constants/path";
-import { useGetUID } from "@/hooks/useGetUID";
+import { TOKEN_LABEL } from "@/constants/token_label";
 import { db } from "@/lib/firebase";
 import { Button, Input, Modal, Stack, Text, Title } from "@mantine/core";
 import { addDoc, collection } from "firebase/firestore";
-import { FormEvent, SetStateAction, useState } from "react";
+import { FC, FormEvent, SetStateAction, useEffect, useState } from "react";
 
-export const AuthModal = () => {
-  const uid = useGetUID();
-  const [opened, setOpened] = useState(uid ? false : true);
+export const AuthModal: FC = () => {
+  const [opened, setOpened] = useState(false);
   const [name, setName] = useState("");
   const { USER_PATH } = COLLECTION_PATH;
+  const { USER_ID } = TOKEN_LABEL;
+  useEffect(() => {
+    if (localStorage.getItem(USER_ID) == null) setOpened(true);
+  }, []);
 
   const createUser = async (values: FormEvent<HTMLFormElement>) => {
     values.preventDefault();
@@ -18,13 +21,13 @@ export const AuthModal = () => {
       orderList: "",
       uuid: "",
     });
-    localStorage.setItem("uid", newUser.id);
+    localStorage.setItem(USER_ID, newUser.id);
     setName("");
     setOpened(false);
   };
 
   return (
-    <Modal opened={opened} onClose={() => uid && setOpened(false)} withCloseButton={false}>
+    <Modal opened={opened} onClose={() => null} withCloseButton={false}>
       <form onSubmit={(values) => createUser(values)}>
         <Stack justify="center">
           <Title align="center" order={2}>
