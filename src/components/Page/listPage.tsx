@@ -1,13 +1,8 @@
-import { Box, Center, SimpleGrid, Title } from "@mantine/core";
+import { Box, Center, Title } from "@mantine/core";
 import { FC } from "react";
-import { MenuCard } from "@/components/Element/MenuCard";
-import { useFetchMenuList } from "@/hooks/useFetchMenuList";
-import { Menu } from "@/type/Menu";
+import { MenuLists } from "@/components/Element/MenuLists";
 
 export const ListPage: FC = () => {
-  const { menuList } = useFetchMenuList();
-  // 売り切れをfilterして表示しない
-  const filteredMenuList = menuList.filter((menu) => !menu.isSoldOut);
   return (
     <>
       <Box mt={24} mx={24}>
@@ -17,19 +12,7 @@ export const ListPage: FC = () => {
       <Title order={3} mx={24}>
         Menu
       </Title>
-      <SimpleGrid
-        cols={4}
-        mx={24}
-        breakpoints={[
-          { maxWidth: "md", cols: 4, spacing: "md" },
-          { maxWidth: "sm", cols: 3, spacing: "sm" },
-          { maxWidth: "xs", cols: 2, spacing: "sm" },
-        ]}
-      >
-        {filteredMenuList.map((menu: Menu) => (
-          <MenuCard key={menu.id} menu={menu} />
-        ))}
-      </SimpleGrid>
+      <MenuLists />
       <br />
     </>
   );
