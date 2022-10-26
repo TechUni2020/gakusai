@@ -3,13 +3,16 @@ import { FC } from "react";
 import { MenuCard } from "@/components/Element/MenuCard";
 import { useFetchMenuList } from "@/hooks/useFetchMenuList";
 import { Menu } from "@/type/Menu";
+import { Congestion } from "../Congestion";
 
-export const ListPage: FC = () => {
+export const Page: FC = () => {
   const { menuList } = useFetchMenuList();
   // 売り切れをfilterして表示しない
   const filteredMenuList = menuList.filter((menu) => !menu.isSoldOut);
+
   return (
     <>
+      <Congestion />
       <Box mt={24} mx={24}>
         <Center>以下から商品を注文できます。</Center>
         <Center>※お支払いは、、、。</Center>
