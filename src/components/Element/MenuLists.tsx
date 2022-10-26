@@ -19,15 +19,15 @@ export const MenuLists: FC = () => {
       </Tabs.List>
 
       <Tabs.Panel value="all" mt={4}>
-        <BaseMenuList menuList={filteredAllMenuList} />
+        <BaseMenuList title="Menu" menuList={filteredAllMenuList} />
       </Tabs.Panel>
 
       <Tabs.Panel value="food" mt={4}>
-        <BaseMenuList menuList={filteredFoodMenuList} />
+        <BaseMenuList title="Food" menuList={filteredFoodMenuList} />
       </Tabs.Panel>
 
       <Tabs.Panel value="drink" mt={4}>
-        <BaseMenuList menuList={filteredDrinkMenuList} />
+        <BaseMenuList title="Drink" menuList={filteredDrinkMenuList} />
       </Tabs.Panel>
     </Tabs>
   );
