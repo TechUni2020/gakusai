@@ -4,6 +4,7 @@ import { MenuCard } from "@/components/Element/MenuCard";
 import { useFetchMenuList } from "@/hooks/useFetchMenuList";
 import { Menu } from "@/type/Menu";
 import { Congestion } from "../Congestion";
+import { AuthModal } from "../authModal";
 
 export const Page: FC = () => {
   const { menuList } = useFetchMenuList();
@@ -12,6 +13,7 @@ export const Page: FC = () => {
 
   return (
     <>
+      <AuthModal />
       <Congestion />
       <Box mt={24} mx={24}>
         <Center>以下から商品を注文できます。</Center>
