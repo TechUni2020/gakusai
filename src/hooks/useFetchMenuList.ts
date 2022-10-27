@@ -26,9 +26,9 @@ export const useFetchMenuList = () => {
         };
       });
 
-      const userSnapshot = await getDocs(collection(db, MENU_PATH));
+      const menuSnapshot = await getDocs(collection(db, MENU_PATH));
 
-      const list = userSnapshot.docs.map((doc) => {
+      const list = menuSnapshot.docs.map((doc) => {
         const id = doc.id;
         /*
          * Fix Me https://zenn.dev/arark/articles/9ef42ee801050e0f9b88
