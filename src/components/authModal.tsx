@@ -19,6 +19,7 @@ export const AuthModal: FC = () => {
     const newUser = await addDoc(collection(db, USER_PATH), {
       name: name,
       orderList: "",
+      sumOfPay: 0,
       uuid: "",
     });
     localStorage.setItem(USER_ID, newUser.id);

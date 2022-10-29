@@ -6,6 +6,7 @@ export type Menu = {
   isSoldOut: boolean;
   image: string;
   description: string;
+  quantity?: number | null;
 };
 
 export type MenuCollection = {
