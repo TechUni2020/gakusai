@@ -1,6 +1,6 @@
+import { CartToggle } from "@/components/CartToggle";
 import { Center, Divider, Grid, Title } from "@mantine/core";
 import { FC } from "react";
-import { CartToggle } from "../CartToggle";
 
 export const Header: FC = () => {
   return (
