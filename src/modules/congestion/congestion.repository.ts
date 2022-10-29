@@ -13,6 +13,7 @@ export const congestionRepository = {
     const DOCUMENT_ID = "63NtIre4RaxO4YuvOHF3";
     const congestionDoc = await getDoc(doc(congestionCol, DOCUMENT_ID));
     const res = congestionDoc.data() as Args;
-    return res.congestions.filter((x) => x.isShow)[0];
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return res.congestions.find((congestions) => congestions.isShow)!;
   },
 };

@@ -1,11 +1,11 @@
 import { PageLayout } from "@/components/Layout/pageLayout";
-import { Page } from "@/components/Page";
+import { ListPage } from "@/components/Page";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   return (
     <PageLayout>
-      <Page />
+      <ListPage />
     </PageLayout>
   );
 };
