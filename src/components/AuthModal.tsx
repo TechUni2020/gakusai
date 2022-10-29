@@ -47,6 +47,7 @@ export const AuthModal: FC<Props> = ({ opened, setOpened, confirmationResult }) 
           required
         />
       </Input.Wrapper>
+      {/* TODO: 現状だとボタンが二度押しできてしまうので、AsyncButtonを作る */}
       <Button onClick={login}>送信する</Button>
     </Modal>
   );
