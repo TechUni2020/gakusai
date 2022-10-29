@@ -1,5 +1,5 @@
-import { Footer } from "@/components/Element/footer";
-import { Header } from "@/components/Element/header";
+import { Footer } from "@/components/Element/Footer";
+import { Header } from "@/components/Element/Header";
 import { FC, ReactNode } from "react";
 
 type Props = {

@@ -1,8 +1,7 @@
-import { addToCart } from "@/store/modules/cartOperation";
+import { OperateCart } from "@/globalStates/atoms/cartState/operateCart";
 import { Menu } from "@/type/Menu";
 import { Box, Button, Card, createStyles, Image, Text, Title } from "@mantine/core";
 import { FC } from "react";
-import { useDispatch } from "react-redux";
 
 type Props = {
   menu: Menu;
@@ -10,7 +9,7 @@ type Props = {
 
 export const MenuCard: FC<Props> = ({ menu }) => {
   const { classes } = useStyles();
-  const dispatch = useDispatch();
+  const { addToCart } = OperateCart();
   return (
     <Card className={classes.card} shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section withBorder>
@@ -22,7 +21,7 @@ export const MenuCard: FC<Props> = ({ menu }) => {
         {/* Todo 後でstylingする */}
         <Text>{menu.description}</Text>
       </div>
-      <Button color="lime" fullWidth onClick={() => dispatch(addToCart(menu))}>
+      <Button color="lime" fullWidth onClick={() => addToCart(menu)}>
         <Box>追加</Box>
       </Button>
     </Card>
