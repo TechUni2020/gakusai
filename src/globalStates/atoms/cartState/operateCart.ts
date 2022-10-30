@@ -7,20 +7,16 @@ export const OperateCart = () => {
   const [cart, setCart] = useRecoilState(CartState);
 
   const addToCart = (item: Menu): void => {
-    const newItem = {
-      menuId: item.id,
-      name: item.name,
-      quantity: 1,
-      price: item.price,
-    };
-    const existedItem = cart.find((cartItem) => cartItem.menuId === newItem.menuId);
+    const existedItem = cart.find((cartItem) => cartItem.menuId === item.id);
     if (existedItem) {
-      setCart(
-        cart.map((cartItem) =>
-          cartItem.menuId === existedItem.menuId ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
-        )
-      );
+      incrementItem(existedItem);
     } else {
+      const newItem = {
+        menuId: item.id,
+        name: item.name,
+        quantity: 1,
+        price: item.price,
+      };
       setCart([...cart, newItem]);
     }
   };
