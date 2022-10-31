@@ -15,9 +15,9 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-      <PageLayout>
-        <ListPage />
-      </PageLayout>
+    <PageLayout>
+      <ListPage />
+    </PageLayout>
   );
 };
 
