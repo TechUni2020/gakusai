@@ -1,13 +1,11 @@
 import { Box, Center } from "@mantine/core";
 import { FC } from "react";
 import { MenuLists } from "@/components/Element/MenuLists";
-import { AuthModal } from "../authModal";
 import { Congestion } from "../Congestion";
 
 export const ListPage: FC = () => {
   return (
     <>
-      <AuthModal />
       <Congestion />
       <Box mt={24} mx={24}>
         <Center>以下から商品を注文できます。</Center>

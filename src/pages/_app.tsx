@@ -1,7 +1,8 @@
 import { MantineProvider } from "@mantine/core";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { RecoilRoot } from "recoil";
+import { Toaster } from "react-hot-toast";
+import {RecoilRoot} from "recoil";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -21,6 +22,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         }}
       >
         <Component {...pageProps} />
+        <Toaster />
       </MantineProvider>
     </RecoilRoot>
   );

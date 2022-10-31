@@ -1,4 +1,7 @@
 export const pagesPath = {
+  "auth": {
+    $url: (url?: { hash?: string }) => ({ pathname: '/auth' as const, hash: url?.hash })
+  },
   $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash })
 }
 
