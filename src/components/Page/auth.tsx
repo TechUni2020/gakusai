@@ -31,13 +31,16 @@ export const Auth: FC = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (window as any).confirmationResult = confirmationResult; // NOTE: window.confirmationResultだと型エラーになるので、一旦windowをanyにしている
       setConfirmationResult(confirmationResult);
-      setPhoneNumber("");
       setIsOpen(true);
     } catch (err) {
       toast.error("不正な電話番号です");
       console.error(err);
+    } finally {
+      setPhoneNumber("");
     }
   };
+
+  const isDisabled = phoneNumber === "" || phoneNumber.includes("_");
 
   return (
     <>
@@ -59,7 +62,7 @@ export const Auth: FC = () => {
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </Input.Wrapper>
-          <Button type="submit" color="orange" id={recaptchaVerifierId}>
+          <Button type="submit" color="orange" id={recaptchaVerifierId} disabled={isDisabled}>
             登録
           </Button>
         </Stack>

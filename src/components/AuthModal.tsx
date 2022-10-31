@@ -30,10 +30,13 @@ export const AuthModal: FC<Props> = ({ opened, setOpened, confirmationResult }) 
     } catch (err) {
       toast.error("不正な確認コードです");
       console.error(err);
+      router.reload();
     } finally {
       setOpened(false);
     }
   };
+
+  const isDisabled = number === "" || number.includes("_");
 
   return (
     <Modal opened={opened} onClose={() => null} withCloseButton={false}>
@@ -48,7 +51,9 @@ export const AuthModal: FC<Props> = ({ opened, setOpened, confirmationResult }) 
         />
       </Input.Wrapper>
       {/* TODO: 現状だとボタンが二度押しできてしまうので、AsyncButtonを作る */}
-      <Button onClick={login}>送信する</Button>
+      <Button onClick={login} disabled={isDisabled}>
+        送信する
+      </Button>
     </Modal>
   );
 };
