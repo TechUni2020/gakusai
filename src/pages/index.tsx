@@ -1,10 +1,21 @@
+import { Provider } from "react-redux";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { PageLayout } from "@/components/Layout/pageLayout";
 import { ListPage } from "@/components/Page";
-import type { NextPage } from "next";
-import { Provider } from "react-redux";
+import { pagesPath } from "@/lib/$path";
+import { authService } from "@/modules/auth/auth.service";
 import store from "../store";
+import type { NextPage } from "next";
 
 const Home: NextPage = () => {
+  const router = useRouter();
+  const isSignedIn = authService.isSignedIn();
+
+  useEffect(() => {
+    if (!isSignedIn) router.push(pagesPath.auth.$url());
+  }, []);
+
   return (
     <Provider store={store}>
       <PageLayout>
