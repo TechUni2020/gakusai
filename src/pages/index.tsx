@@ -1,11 +1,9 @@
-import { Provider } from "react-redux";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { PageLayout } from "@/components/Layout/pageLayout";
 import { ListPage } from "@/components/Page";
 import { pagesPath } from "@/lib/$path";
 import { authService } from "@/modules/auth/auth.service";
-import store from "../store";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
@@ -17,11 +15,9 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <Provider store={store}>
       <PageLayout>
         <ListPage />
       </PageLayout>
-    </Provider>
   );
 };
 
