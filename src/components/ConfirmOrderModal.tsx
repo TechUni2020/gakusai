@@ -18,7 +18,7 @@ export const ConfirmOrderModal: FC<Props> = ({ opened, setOpened }) => {
   const cart = useRecoilValue(CartState);
   const totalQuantity = useRecoilValue(totalQuantitySelector);
   const totalPrice = useRecoilValue(totalPriceSelector);
-  const [receivingTimeKey, setReceivingTimeKey] = useState<ReceivingTimeKey>("unknown");
+  const [receivingTimeKey, setReceivingTimeKey] = useState<ReceivingTimeKey>("now");
 
   return (
     <Modal opened={opened} onClose={() => setOpened(false)} withCloseButton={false}>
@@ -29,7 +29,7 @@ export const ConfirmOrderModal: FC<Props> = ({ opened, setOpened }) => {
         ※ 注文を確定すると、受け渡しが完了するまで注文の変更・追加ができません
       </Text>
       <OrderDetailList />
-      <ReceivingPredictionTime setReceivingTimeKey={setReceivingTimeKey} />
+      <ReceivingPredictionTime setReceivingTimeKey={setReceivingTimeKey} receivingTimeKey={receivingTimeKey} />
       <SimpleGrid cols={2} spacing="lg">
         <Button color="gray" onClick={() => setOpened(false)}>
           キャンセル
