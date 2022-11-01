@@ -12,7 +12,7 @@ import { ConfirmOrderModal } from "@/components/ConfirmOrderModal";
 
 export const CartToggle: FC = () => {
   const [openedCartToggle, setOpenedCartToggle] = useState(false);
-  const [openedConfirmModal, setOpenedConfirmModal] = useState(true);
+  const [openedConfirmModal, setOpenedConfirmModal] = useState(false);
 
   const cart = useRecoilValue(CartState);
   const totalQuantity = useRecoilValue(totalQuantitySelector);
