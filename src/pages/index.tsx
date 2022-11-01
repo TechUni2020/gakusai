@@ -4,6 +4,7 @@ import { PageLayout } from "@/components/Layout/pageLayout";
 import { ListPage } from "@/components/Page";
 import { pagesPath } from "@/lib/$path";
 import { authService } from "@/modules/auth/auth.service";
+import { orderService } from "@/modules/order/order.service";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
@@ -12,6 +13,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (!isSignedIn) router.push(pagesPath.auth.$url());
+    if (orderService.getOrderNum() != null) router.push(pagesPath.completed.$url());
   }, []);
 
   return (
