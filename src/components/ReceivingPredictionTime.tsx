@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
-import { Box, Button, createStyles, Text } from "@mantine/core";
+import { Box, createStyles, Text } from "@mantine/core";
 import { ReceivingTimeKey } from "@/type/Order";
+import { GreenButton } from "@/components/Element/Button/GreenButton";
 
 type Props = {
   setReceivingTimeKey: Dispatch<SetStateAction<ReceivingTimeKey>>;
@@ -18,81 +19,11 @@ export const ReceivingPredictionTime: FC<Props> = ({ setReceivingTimeKey }) => {
         受け取りたい時間を選択してください
       </Text>
       <Box className={classes.buttonWrapper}>
-        <Button
-          sx={{
-            "&:hover": {
-              backgroundColor: "green",
-              color: "white",
-            },
-          }}
-          color="green"
-          variant="white"
-          onClick={() => {
-            setReceivingTimeKey("now");
-          }}
-        >
-          今から
-        </Button>
-        <Button
-          sx={{
-            "&:hover": {
-              backgroundColor: "green",
-              color: "white",
-            },
-          }}
-          color="green"
-          variant="white"
-          onClick={() => {
-            setReceivingTimeKey("10min");
-          }}
-        >
-          10分後
-        </Button>
-        <Button
-          sx={{
-            "&:hover": {
-              backgroundColor: "green",
-              color: "white",
-            },
-          }}
-          color="green"
-          variant="white"
-          onClick={() => {
-            setReceivingTimeKey("20min");
-          }}
-        >
-          20分後
-        </Button>
-        <Button
-          sx={{
-            "&:hover": {
-              backgroundColor: "green",
-              color: "white",
-            },
-          }}
-          color="green"
-          variant="white"
-          onClick={() => {
-            setReceivingTimeKey("30min");
-          }}
-        >
-          30分後
-        </Button>
-        <Button
-          sx={{
-            "&:hover": {
-              backgroundColor: "green",
-              color: "white",
-            },
-          }}
-          color="green"
-          variant="white"
-          onClick={() => {
-            setReceivingTimeKey("unknown");
-          }}
-        >
-          その他
-        </Button>
+        <GreenButton label="今から" onClick={() => setReceivingTimeKey("now")} />
+        <GreenButton label="10分後" onClick={() => setReceivingTimeKey("10min")} />
+        <GreenButton label="20分後" onClick={() => setReceivingTimeKey("20min")} />
+        <GreenButton label="30分後" onClick={() => setReceivingTimeKey("30min")} />
+        <GreenButton label="その他" onClick={() => setReceivingTimeKey("unknown")} />
       </Box>
     </Box>
   );
