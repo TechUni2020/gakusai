@@ -1,6 +1,7 @@
 import { Button, Modal, SimpleGrid, Text } from "@mantine/core";
 import { FC, useState } from "react";
 import { useRecoilValue } from "recoil";
+import { useRouter } from "next/router";
 import { orderRepository } from "@/modules/order/order.repository";
 import { CartState } from "@/globalStates/atoms/cartState";
 import { totalQuantitySelector } from "@/globalStates/atoms/cartState/selectors/totalQuantitySelector";
@@ -8,6 +9,7 @@ import { totalPriceSelector } from "@/globalStates/atoms/cartState/selectors/tot
 import { ReceivingPredictionTime } from "@/components/ReceivingPredictionTime";
 import { OrderDetailList } from "@/components/OrderDetailList";
 import { ReceivingTimeKey } from "@/type/Order";
+import { pagesPath } from "@/lib/$path";
 
 type Props = {
   opened: boolean;
@@ -15,10 +17,21 @@ type Props = {
 };
 
 export const ConfirmOrderModal: FC<Props> = ({ opened, setOpened }) => {
+  const router = useRouter();
   const cart = useRecoilValue(CartState);
   const totalQuantity = useRecoilValue(totalQuantitySelector);
   const totalPrice = useRecoilValue(totalPriceSelector);
   const [receivingTimeKey, setReceivingTimeKey] = useState<ReceivingTimeKey>("now");
+
+  const onClickOrderButton = async () => {
+    try {
+      await orderRepository.create(cart, totalQuantity, totalPrice, receivingTimeKey);
+      setOpened(false);
+      router.push(pagesPath.completed.$url());
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <Modal opened={opened} onClose={() => setOpened(false)} withCloseButton={false}>
@@ -34,10 +47,7 @@ export const ConfirmOrderModal: FC<Props> = ({ opened, setOpened }) => {
         <Button color="gray" onClick={() => setOpened(false)}>
           キャンセル
         </Button>
-        <Button
-          onClick={() => orderRepository.create(cart, totalQuantity, totalPrice, receivingTimeKey)}
-          disabled={!cart.length}
-        >
+        <Button onClick={onClickOrderButton} disabled={!cart.length}>
           確定する
         </Button>
       </SimpleGrid>
