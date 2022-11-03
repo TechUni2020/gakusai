@@ -1,7 +1,6 @@
 import { Button, Input, Modal } from "@mantine/core";
-import { FC, useId, useState } from "react";
+import { ChangeEvent, FC, useId, useState } from "react";
 import { ConfirmationResult } from "firebase/auth";
-import InputMask from "react-input-mask";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import { userRepository } from "@/modules/user/user.repository";
@@ -17,7 +16,6 @@ type Props = {
 export const AuthModal: FC<Props> = ({ opened, setOpened, confirmationResult }) => {
   const id = useId();
   const [number, setNumber] = useState<string>("");
-  const mask = "999999";
   const router = useRouter();
 
   const login = async () => {
@@ -42,12 +40,12 @@ export const AuthModal: FC<Props> = ({ opened, setOpened, confirmationResult }) 
     <Modal opened={opened} onClose={() => null} withCloseButton={false}>
       <Input.Wrapper id={id} label="確認コードを入力" required>
         <Input
-          component={InputMask}
-          mask={mask}
+          pattern="[\d\]*"
           value={number}
+          type="tel"
           placeholder="123456"
-          onChange={(e) => setNumber(e.target.value)}
-          required
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setNumber(e.target.value)}
+          required={true}
         />
       </Input.Wrapper>
       {/* TODO: 現状だとボタンが二度押しできてしまうので、AsyncButtonを作る */}
