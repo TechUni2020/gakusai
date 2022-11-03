@@ -55,8 +55,8 @@ export const Auth: FC = () => {
           <Input.Wrapper id={id} label="電話番号をスペースなしで入力してください" required>
             <Input
               id={id}
-              component={InputMask}
-              mask={mask}
+              type="tel"
+              pattern="[\d\]*"
               value={phoneNumber}
               placeholder="01023456789"
               onChange={(e) => setPhoneNumber(e.target.value)}

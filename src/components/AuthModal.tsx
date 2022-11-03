@@ -42,8 +42,7 @@ export const AuthModal: FC<Props> = ({ opened, setOpened, confirmationResult }) 
     <Modal opened={opened} onClose={() => null} withCloseButton={false}>
       <Input.Wrapper id={id} label="確認コードを入力" required>
         <Input
-          component={InputMask}
-          mask={mask}
+          pattern="[\d\]*"
           value={number}
           type="tel"
           placeholder="123456"
