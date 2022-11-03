@@ -56,6 +56,7 @@ export const Auth: FC = () => {
             <Input
               id={id}
               type="tel"
+              inputMode="numeric"
               pattern="[\d\]*"
               value={phoneNumber}
               placeholder="01023456789"
