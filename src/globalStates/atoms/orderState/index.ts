@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { atom, RecoilState, useRecoilState } from "recoil";
+import { atom, RecoilState, useRecoilState, useSetRecoilState } from "recoil";
 import { recoilPersist } from "recoil-persist";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { useRouter } from "next/router";
@@ -7,6 +7,7 @@ import { Order } from "@/type/Order";
 import { TOKEN_LABEL } from "@/constants/token_label";
 import { db } from "@/lib/firebase";
 import { pagesPath } from "@/lib/$path";
+import { CartState } from "../cartState";
 
 const { ORDER_STATE } = TOKEN_LABEL;
 
@@ -16,7 +17,7 @@ const { persistAtom } = recoilPersist({
 
 export const initialState = {};
 
-export const OrderState: RecoilState<Order> = atom({
+export const OrderState: RecoilState<Order | null> = atom({
   key: "Order",
   default: initialState,
   effects_UNSTABLE: [persistAtom],
@@ -34,8 +35,10 @@ export const useOrderState = () => {
   const router = useRouter();
   const [isInitial, setIsInitial] = useState(true);
   const [orderState, setOrderState] = useRecoilState(OrderState);
+  const setCart = useSetRecoilState(CartState);
 
   const fetchOrder = () => {
+    if (orderState == null) return;
     const orderId = orderState.orderId;
     const orderCol = collection(db, "order");
     const q = query(orderCol, where("order_id", "==", orderId));
@@ -50,13 +53,14 @@ export const useOrderState = () => {
         sumPrice: res.sum_price,
         sumQuantity: res.sum_quantity,
       };
-      setOrderState(order);
+      if (order.isReceived) {
+        setOrderState(null);
+        setCart([]);
+        router.push(pagesPath.$url());
+      } else {
+        setOrderState(order);
+      }
     });
-  };
-
-  const receiveOrder = async () => {
-    localStorage.removeItem(ORDER_STATE);
-    await router.push(pagesPath.$url());
   };
 
   // 初期レンダリング時にflagをfalseにする
@@ -64,12 +68,6 @@ export const useOrderState = () => {
     setIsInitial(false);
     fetchOrder();
   }, []);
-
-  useEffect(() => {
-    if (orderState.isReceived) {
-      receiveOrder();
-    }
-  }, [orderState.isReceived]);
 
   return {
     order: isInitial ? null : orderState,

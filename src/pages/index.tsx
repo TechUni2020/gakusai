@@ -12,7 +12,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (!authService.isSignedIn()) router.push(pagesPath.auth.$url());
-    else if (orderService.hasOrderState()) router.push(pagesPath.completed.$url());
+    if (!orderService.hasOrderState()) router.push(pagesPath.completed.$url());
   }, []);
 
   return (
