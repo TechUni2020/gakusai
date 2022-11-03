@@ -1,7 +1,7 @@
+import { BaseMenuList } from "@/components/Element/BaseMenuList";
+import { useFetchMenuList } from "@/hooks/useFetchMenuList";
 import { Tabs } from "@mantine/core";
 import { FC } from "react";
-import { useFetchMenuList } from "@/hooks/useFetchMenuList";
-import { BaseMenuList } from "@/components/Element/BaseMenuList";
 
 /*
  * Info　他で仕様することになりそうなタイミングで定数を切り出す
@@ -14,9 +14,9 @@ export const MenuLists: FC = () => {
   const { menuList } = useFetchMenuList();
 
   // 売り切れをfilterして表示しない
-  const filteredAllMenuList = menuList.filter((menu) => !menu.isSoldOut);
-  const filteredFoodMenuList = filteredAllMenuList.filter((menu) => menu.categoryName === FOOD);
-  const filteredDrinkMenuList = filteredAllMenuList.filter((menu) => menu.categoryName === DRINK);
+  const filteredAllMenuList = menuList.filter((menu) => !menu.is_sold_out);
+  const filteredFoodMenuList = filteredAllMenuList.filter((menu) => menu.category_name === FOOD);
+  const filteredDrinkMenuList = filteredAllMenuList.filter((menu) => menu.category_name === DRINK);
 
   return (
     <Tabs color="orange" defaultValue="all">

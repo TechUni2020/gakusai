@@ -1,5 +1,5 @@
 export class User {
-  orderList!: Array<any>;
-  sumOfPay!: number;
+  order_list!: Array<any>;
+  sum_of_pay!: number;
   uuid!: string;
 }

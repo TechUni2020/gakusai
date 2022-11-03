@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import { Menu, MenuCollection } from "@/type/Menu";
-import { CategoryCollection } from "@/type/Category";
 import { COLLECTION_PATH } from "@/constants/path";
+import { db } from "@/lib/firebase";
+import { CategoryCollection } from "@/type/Category";
+import { Menu, MenuCollection } from "@/type/Menu";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 const { MENU_PATH, CATEGORY_PATH } = COLLECTION_PATH;
 /**
@@ -34,19 +34,19 @@ export const useFetchMenuList = () => {
          * Fix Me https://zenn.dev/arark/articles/9ef42ee801050e0f9b88
          * FirestoreDataConverterを使った方がいい
          */
-        const { name, price, categoryId, isSoldOut, image, description } = doc.data() as MenuCollection;
+        const { name, price, category_id, is_sold_out, image, description } = doc.data() as MenuCollection;
 
         // categoryIdと一致するものをcategoryNameとして入れる
         // 万が一,一致しないものが出てきたらunknownとして扱う
-        const category = categories.find((category) => category.categoryId === categoryId);
+        const category = categories.find((category) => category.categoryId === category_id);
         const categoryName = category ? category.name : "unknown";
 
         return {
           id,
           name,
           price,
-          categoryName: categoryName as "food" | "drink" | "unknown",
-          isSoldOut,
+          category_name: categoryName as "food" | "drink" | "unknown",
+          is_sold_out,
           image,
           description,
         };

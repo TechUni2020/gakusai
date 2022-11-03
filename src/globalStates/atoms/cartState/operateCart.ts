@@ -7,12 +7,12 @@ export const OperateCart = () => {
   const [cart, setCart] = useRecoilState(CartState);
 
   const addToCart = (item: Menu): void => {
-    const existedItem = cart.find((cartItem) => cartItem.menuId === item.id);
+    const existedItem = cart.find((cartItem) => cartItem.menu_id === item.id);
     if (existedItem) {
       incrementItem(existedItem);
     } else {
       const newItem = {
-        menuId: item.id,
+        menu_id: item.id,
         name: item.name,
         quantity: 1,
         price: item.price,
@@ -24,23 +24,23 @@ export const OperateCart = () => {
   const incrementItem = (item: ItemInCart): void => {
     setCart(
       cart.map((cartItem) =>
-        cartItem.menuId === item.menuId ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+        cartItem.menu_id === item.menu_id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
       )
     );
   };
 
   const decrementItem = (item: ItemInCart): void => {
-    const applicableItem = cart.find((cartItem) => cartItem.menuId === item.menuId) as ItemInCart;
+    const applicableItem = cart.find((cartItem) => cartItem.menu_id === item.menu_id) as ItemInCart;
     if (applicableItem.quantity === 1) return;
     setCart(
       cart.map((cartItem) =>
-        cartItem.menuId === applicableItem.menuId ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
+        cartItem.menu_id === applicableItem.menu_id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
       )
     );
   };
 
   const removeFromCart = (item: ItemInCart): void => {
-    const remainder = cart.filter((cartItem) => cartItem.menuId !== item.menuId);
+    const remainder = cart.filter((cartItem) => cartItem.menu_id !== item.menu_id);
     setCart(remainder);
   };
 

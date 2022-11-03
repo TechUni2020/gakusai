@@ -1,14 +1,14 @@
+import { ActionIcon, Button, Center, Divider, Grid, Group, Popover } from "@mantine/core";
+import { IconShoppingCart } from "@tabler/icons";
 import { FC, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { IconShoppingCart } from "@tabler/icons";
-import { ActionIcon, Button, Center, Divider, Grid, Group, Popover } from "@mantine/core";
 
+import { ConfirmOrderModal } from "@/components/ConfirmOrderModal";
 import { CartState } from "@/globalStates/atoms/cartState";
 import { OperateCart } from "@/globalStates/atoms/cartState/operateCart";
 import { totalPriceSelector } from "@/globalStates/atoms/cartState/selectors/totalPriceSelector";
 import { totalQuantitySelector } from "@/globalStates/atoms/cartState/selectors/totalQuantitySelector";
 import { ItemInCart } from "@/type/Cart";
-import { ConfirmOrderModal } from "@/components/ConfirmOrderModal";
 
 export const CartToggle: FC = () => {
   const [openedCartToggle, setOpenedCartToggle] = useState(false);
@@ -42,7 +42,7 @@ export const CartToggle: FC = () => {
           {cart.length ? (
             <>
               {cart.map((item: ItemInCart) => (
-                <div key={item.menuId}>
+                <div key={item.menu_id}>
                   <Grid my={4}>
                     <Grid.Col span="auto">
                       <Button size="xs" color="red" onClick={() => removeFromCart(item)}>

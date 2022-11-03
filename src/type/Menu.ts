@@ -2,8 +2,8 @@ export type Menu = {
   id: string;
   name: string;
   price: number;
-  categoryName: "food" | "drink" | "unknown";
-  isSoldOut: boolean;
+  category_name: "food" | "drink" | "unknown";
+  is_sold_out: boolean;
   image: string;
   description: string;
 };
@@ -11,8 +11,8 @@ export type Menu = {
 export type MenuCollection = {
   name: string;
   price: number;
-  categoryId: string;
-  isSoldOut: boolean;
+  category_id: string;
+  is_sold_out: boolean;
   image: string;
   description: string;
 };
