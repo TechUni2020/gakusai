@@ -2,7 +2,7 @@
 import { Stack, Text, Title, Input, Button, createStyles } from "@mantine/core";
 import { useId } from "@mantine/hooks";
 import { ConfirmationResult, signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
-import { FC, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import InputMask from "react-input-mask";
 import toast from "react-hot-toast";
 import { auth } from "@/lib/firebase";
@@ -55,11 +55,12 @@ export const Auth: FC = () => {
           <Input.Wrapper id={id} label="電話番号をスペースなしで入力してください" required>
             <Input
               id={id}
-              component={InputMask}
-              mask={mask}
+              type="tel"
+              inputMode="numeric"
+              pattern="[\d\]*"
               value={phoneNumber}
               placeholder="01023456789"
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value)}
             />
           </Input.Wrapper>
           <Button type="submit" color="orange" id={recaptchaVerifierId} disabled={isDisabled}>
