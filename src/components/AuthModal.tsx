@@ -46,7 +46,6 @@ export const AuthModal: FC<Props> = ({ opened, setOpened, confirmationResult }) 
           mask={mask}
           value={number}
           type="tel"
-          inputMode="numeric"
           placeholder="123456"
           onChange={(e) => setNumber(e.target.value)}
           required
