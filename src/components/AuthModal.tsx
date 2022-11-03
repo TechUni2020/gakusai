@@ -4,7 +4,6 @@ import { ConfirmationResult } from "firebase/auth";
 import InputMask from "react-input-mask";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
-import { userRepository } from "@/modules/user/user.repository";
 import { authService } from "@/modules/auth/auth.service";
 import { pagesPath } from "@/lib/$path";
 
@@ -24,7 +23,6 @@ export const AuthModal: FC<Props> = ({ opened, setOpened, confirmationResult }) 
     try {
       const res = await confirmationResult.confirm(number);
       const user = res.user;
-      await userRepository.init(user.uid);
       authService.login(user.uid);
       router.push(pagesPath.$url());
     } catch (err) {
