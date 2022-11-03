@@ -25,6 +25,7 @@ export const Header: FC = () => {
 
 const useStyles = createStyles(() => ({
   cart: {
+    position: "absolute",
     justifySelf: "left",
   },
   title: {
