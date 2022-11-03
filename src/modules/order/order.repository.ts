@@ -6,7 +6,6 @@ import { Cart } from "@/type/Cart";
 import { ReceivingTimeKey } from "@/type/Order";
 import { calcReceivingTime } from "@/lib/util/date-utils";
 import { sliceAfterFiveStr } from "@/lib/util/string-util";
-import { orderService } from "./order.service";
 
 const { USER_ID } = TOKEN_LABEL;
 const { ORDER } = COLLECTION_PATH;
@@ -37,7 +36,7 @@ export const orderRepository = {
       is_received: false,
       receiving_prediction_time: receivingPredictionTime,
       ordered_at: currentTime,
-      user_uid: uid
+      user_uid: uid,
     };
 
     await setDoc(orderDoc, formattedOrderData);
@@ -53,6 +52,5 @@ export const orderRepository = {
     };
 
     await createOrderState(orderState);
-    orderService.setOrderId(sliceAfterFiveStr(randomId));
   },
 };

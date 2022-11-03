@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { atom, RecoilState, useRecoilState } from "recoil";
 import { recoilPersist } from "recoil-persist";
 import { Order } from "@/type/Order";
+import { TOKEN_LABEL } from "@/constants/token_label";
 
-const { persistAtom } = recoilPersist();
+const { ORDER_STATE } = TOKEN_LABEL;
+
+const { persistAtom } = recoilPersist({
+  key: ORDER_STATE,
+});
 
 export const initialState = {};
 
