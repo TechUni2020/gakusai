@@ -21,8 +21,8 @@ export const MenuCard: FC<Props> = ({ menu }) => {
         {/* Todo 後でstylingする */}
         <Text>{menu.description}</Text>
       </div>
-      <Button color="lime" fullWidth onClick={() => addToCart(menu)}>
-        <Box>追加</Box>
+      <Button className={classes.button} fullWidth onClick={() => addToCart(menu)}>
+        <Box className={classes.addText}>追加</Box>
       </Button>
     </Card>
   );
@@ -38,5 +38,11 @@ const useStyles = createStyles(() => ({
   docs: {
     marginTop: 12,
     color: "white",
+  },
+  button: {
+    background: "white",
+  },
+  addText: {
+    color: "orange",
   },
 }));

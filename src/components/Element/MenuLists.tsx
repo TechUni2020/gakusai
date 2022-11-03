@@ -1,7 +1,7 @@
+import { BaseMenuList } from "@/components/Element/BaseMenuList";
+import { useFetchMenuList } from "@/hooks/useFetchMenuList";
 import { Tabs } from "@mantine/core";
 import { FC } from "react";
-import { useFetchMenuList } from "@/hooks/useFetchMenuList";
-import { BaseMenuList } from "@/components/Element/BaseMenuList";
 
 /*
  * Info　他で仕様することになりそうなタイミングで定数を切り出す
@@ -27,7 +27,7 @@ export const MenuLists: FC = () => {
       </Tabs.List>
 
       <Tabs.Panel value={ALL} mt={4}>
-        <BaseMenuList title="Menu" menuList={filteredAllMenuList} />
+        <BaseMenuList title="All" menuList={filteredAllMenuList} />
       </Tabs.Panel>
 
       <Tabs.Panel value={FOOD} mt={4}>

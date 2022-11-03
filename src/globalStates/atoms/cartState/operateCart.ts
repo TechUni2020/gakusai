@@ -31,7 +31,10 @@ export const OperateCart = () => {
 
   const decrementItem = (item: ItemInCart): void => {
     const applicableItem = cart.find((cartItem) => cartItem.menuId === item.menuId) as ItemInCart;
-    if (applicableItem.quantity === 1) return;
+    if (applicableItem.quantity === 1) {
+      removeFromCart(item);
+      return;
+    }
     setCart(
       cart.map((cartItem) =>
         cartItem.menuId === applicableItem.menuId ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
