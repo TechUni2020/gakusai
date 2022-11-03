@@ -45,6 +45,8 @@ export const AuthModal: FC<Props> = ({ opened, setOpened, confirmationResult }) 
           component={InputMask}
           mask={mask}
           value={number}
+          type="text"
+          inputMode="numeric"
           placeholder="123456"
           onChange={(e) => setNumber(e.target.value)}
           required
