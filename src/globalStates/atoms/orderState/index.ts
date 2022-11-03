@@ -38,10 +38,10 @@ export const useOrderState = () => {
   const setCart = useSetRecoilState(CartState);
 
   const fetchOrder = () => {
-    if (orderState == null) return;
-    const orderId = orderState.orderId;
+    const orderId = orderState?.orderId;
     const orderCol = collection(db, "order");
-    const q = query(orderCol, where("order_id", "==", orderId));
+    const orderWhere = where("order_id", "==", orderId);
+    const q = query(orderCol, orderWhere);
     onSnapshot(q, (querySnapshot) => {
       const res = querySnapshot.docs.map((e) => e.data())[0];
       const order = {
@@ -67,7 +67,7 @@ export const useOrderState = () => {
   useEffect(() => {
     setIsInitial(false);
     fetchOrder();
-  }, []);
+  }, [isInitial]);
 
   return {
     order: isInitial ? null : orderState,
