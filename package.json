@@ -24,7 +24,8 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-input-mask": "^2.0.4",
-    "recoil": "^0.7.6"
+    "recoil": "^0.7.6",
+    "recoil-persist": "^4.2.0"
   },
   "devDependencies": {
     "@emotion/react": "^11.10.4",
