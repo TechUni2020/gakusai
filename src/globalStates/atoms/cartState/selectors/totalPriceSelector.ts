@@ -9,7 +9,8 @@ export const totalPriceSelector = selector({
       if (cartItem.category === "food" && cartItem.quantity !== 1) {
         const discountQuantity = Math.floor(cartItem.quantity / 2);
         const notDiscountQuantity = cartItem.quantity - discountQuantity;
-        return sum + ((cartItem.price - 100) * discountQuantity + cartItem.price * notDiscountQuantity);
+
+        return sum + (100 * discountQuantity + cartItem.price * notDiscountQuantity);
       } else {
         return sum + cartItem.price * cartItem.quantity;
       }
