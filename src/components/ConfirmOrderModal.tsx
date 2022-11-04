@@ -10,6 +10,7 @@ import { ReceivingPredictionTime } from "@/components/ReceivingPredictionTime";
 import { OrderDetailList } from "@/components/OrderDetailList";
 import { ReceivingTimeKey } from "@/type/Order";
 import { pagesPath } from "@/lib/$path";
+import { useOrder } from "@/globalStates/atoms/orderState/useOrder";
 
 type Props = {
   opened: boolean;
@@ -23,9 +24,10 @@ export const ConfirmOrderModal: FC<Props> = ({ opened, setOpened }) => {
   const totalPrice = useRecoilValue(totalPriceSelector);
   const [receivingTimeKey, setReceivingTimeKey] = useState<ReceivingTimeKey>("now");
 
+  const { createOrderState } = useOrder();
   const onClickOrderButton = async () => {
     try {
-      await orderRepository.create(cart, totalQuantity, totalPrice, receivingTimeKey);
+      await orderRepository.create(cart, totalQuantity, totalPrice, receivingTimeKey, createOrderState);
       setOpened(false);
       router.push(pagesPath.completed.$url());
     } catch (err) {
@@ -41,7 +43,7 @@ export const ConfirmOrderModal: FC<Props> = ({ opened, setOpened }) => {
       <Text color="red" weight={500} size="xs">
         ※ 注文を確定すると、受け渡しが完了するまで注文の変更・追加ができません
       </Text>
-      <OrderDetailList />
+      <OrderDetailList list={cart} />
       <ReceivingPredictionTime setReceivingTimeKey={setReceivingTimeKey} receivingTimeKey={receivingTimeKey} />
       <SimpleGrid cols={2} spacing="lg">
         <Button color="gray" onClick={() => setOpened(false)}>

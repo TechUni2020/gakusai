@@ -11,7 +11,7 @@ const CompletedPage: NextPage = () => {
 
   useEffect(() => {
     if (!isSignedIn) router.push(pagesPath.auth.$url());
-    if (orderService.getOrderNum() == null) router.push(pagesPath.$url());
+    if (orderService.hasOrderState()) router.push(pagesPath.$url());
   }, []);
 
   return <Completed />;
