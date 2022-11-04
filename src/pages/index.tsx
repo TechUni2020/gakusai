@@ -11,7 +11,9 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!authService.isSignedIn()) router.push(pagesPath.auth.$url());
+    /* 緊急対応時にしてください*/
+    // if (!authService.isSignedIn()) router.push(pagesPath.auth.$url());
+    localStorage.setItem("uid", "guest");
     if (!orderService.hasOrderState()) router.push(pagesPath.completed.$url());
   }, []);
 
