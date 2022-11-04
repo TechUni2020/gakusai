@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Center, createStyles, Divider, Grid, Group, Popover } from "@mantine/core";
+import { ActionIcon, Button, Center, Divider, Grid, Group, Popover } from "@mantine/core";
 import { IconShoppingCart } from "@tabler/icons";
 import { FC, useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -11,7 +11,6 @@ import { totalQuantitySelector } from "@/globalStates/atoms/cartState/selectors/
 import { ItemInCart } from "@/type/Cart";
 
 export const CartToggle: FC = () => {
-  const { classes } = useStyles();
   const [openedCartToggle, setOpenedCartToggle] = useState(false);
   const [openedConfirmModal, setOpenedConfirmModal] = useState(false);
 
@@ -54,10 +53,10 @@ export const CartToggle: FC = () => {
                     <Grid.Col span="auto">×{item.quantity}</Grid.Col>
                     <Grid.Col span="auto">
                       <Grid mt={2}>
-                        <Button size="xs" className={classes.buttonExceptingRemove} onClick={() => incrementItem(item)}>
+                        <Button size="xs" mr={2} variant="filled" color="orange" onClick={() => incrementItem(item)}>
                           +
                         </Button>
-                        <Button size="xs" className={classes.buttonExceptingRemove} onClick={() => decrementItem(item)}>
+                        <Button size="xs" variant="filled" color="orange" onClick={() => decrementItem(item)}>
                           −
                         </Button>
                       </Grid>
@@ -70,7 +69,7 @@ export const CartToggle: FC = () => {
               <Center> カートの合計金額: {totalPrice} 円</Center>
               <br />
               <Center>
-                <Button className={classes.buttonExceptingRemove} onClick={onClickConfirmOrder}>
+                <Button variant="filled" color="orange" onClick={onClickConfirmOrder}>
                   購入
                 </Button>
               </Center>
@@ -83,9 +82,3 @@ export const CartToggle: FC = () => {
     </>
   );
 };
-
-const useStyles = createStyles(() => ({
-  buttonExceptingRemove: {
-    background: "orange",
-  },
-}));

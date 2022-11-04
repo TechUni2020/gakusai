@@ -1,6 +1,6 @@
 import { OperateCart } from "@/globalStates/atoms/cartState/operateCart";
 import { Menu } from "@/type/Menu";
-import { Box, Button, Card, createStyles, Image, Text, Title } from "@mantine/core";
+import { Button, Card, createStyles, Image, Text, Title } from "@mantine/core";
 import { FC } from "react";
 
 type Props = {
@@ -21,8 +21,8 @@ export const MenuCard: FC<Props> = ({ menu }) => {
         {/* Todo 後でstylingする */}
         <Text>{menu.description}</Text>
       </div>
-      <Button className={classes.button} fullWidth onClick={() => addToCart(menu)}>
-        <Box className={classes.addText}>追加</Box>
+      <Button variant="light" color="orange" fullWidth onClick={() => addToCart(menu)}>
+        追加
       </Button>
     </Card>
   );
@@ -38,11 +38,5 @@ const useStyles = createStyles(() => ({
   docs: {
     marginTop: 12,
     color: "white",
-  },
-  button: {
-    background: "white",
-  },
-  addText: {
-    color: "orange",
   },
 }));
