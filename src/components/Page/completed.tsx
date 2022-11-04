@@ -20,7 +20,7 @@ export const Completed: FC = () => {
       <Divider my="sm" />
 
       <Box className={classes.orderColumnWrapper}>
-        <Image src="/kousyo.png" alt="関学の校章" />
+        <Image src="/TechUni.svg" alt="TechUniのアイコン" />
         <Box>
           <Text>ご注文番号：</Text>
           <Text className={classes.orderNumber}>{`『${orderId}』`}</Text>
