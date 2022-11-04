@@ -29,7 +29,7 @@ export const CartToggle: FC = () => {
     <>
       <ConfirmOrderModal opened={openedConfirmModal} setOpened={setOpenedConfirmModal} />
 
-      <Popover opened={openedCartToggle} onChange={setOpenedCartToggle} position="bottom">
+      <Popover opened={openedCartToggle} onChange={setOpenedCartToggle} position="bottom" width={"380px"}>
         <Popover.Target>
           <Group onClick={() => setOpenedCartToggle((isOpen) => !isOpen)} mx={24} my={2}>
             <ActionIcon size={48}>
