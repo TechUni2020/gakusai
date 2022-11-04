@@ -1,6 +1,6 @@
 export class Congestion {
   icon!: string;
   text!: string;
-  isShow!: boolean;
+  is_show!: boolean;
   color!: string;
 }

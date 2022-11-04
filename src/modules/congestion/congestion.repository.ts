@@ -14,6 +14,6 @@ export const congestionRepository = {
     const congestionDoc = await getDoc(doc(congestionCol, DOCUMENT_ID));
     const res = congestionDoc.data() as Args;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return res.congestions.find((congestions) => congestions.isShow)!;
+    return res.congestions.find((congestions) => congestions.is_show)!;
   },
 };

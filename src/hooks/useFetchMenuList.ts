@@ -34,7 +34,7 @@ export const useFetchMenuList = () => {
          * Fix Me https://zenn.dev/arark/articles/9ef42ee801050e0f9b88
          * FirestoreDataConverterを使った方がいい
          */
-        const { name, price, categoryId, isSoldOut, image, description } = doc.data() as MenuCollection;
+        const { name, price, category_id: categoryId, is_sold_out: isSoldOut, image, description } = doc.data() as MenuCollection;
 
         // categoryIdと一致するものをcategoryNameとして入れる
         // 万が一,一致しないものが出てきたらunknownとして扱う
