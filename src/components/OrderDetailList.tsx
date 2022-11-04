@@ -1,11 +1,14 @@
 import { FC } from "react";
-import { useRecoilValue } from "recoil";
 import { Box, List, Text } from "@mantine/core";
-import { CartState } from "@/globalStates/atoms/cartState";
+import { Cart } from "@/type/Cart";
 
-export const OrderDetailList: FC = () => {
-  const cart = useRecoilValue(CartState);
-  if (!cart.length) {
+interface Props {
+  textColor?: string;
+  list: Cart;
+}
+
+export const OrderDetailList: FC<Props> = ({ list, textColor = "black" }) => {
+  if (!list.length) {
     return null;
   }
 
@@ -14,10 +17,10 @@ export const OrderDetailList: FC = () => {
       <Text size="lg" weight={700}>
         注文内容一覧
       </Text>
-      {cart.map((item) => (
+      {list.map((item) => (
         <List key={item.menuId} mt={5} withPadding>
           <List.Item>
-            <Text size="md">
+            <Text size="md" color={textColor}>
               {item.name} ︎ {item.quantity}
             </Text>
           </List.Item>
