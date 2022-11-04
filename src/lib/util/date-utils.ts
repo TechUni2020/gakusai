@@ -1,5 +1,14 @@
 import { ReceivingTimeKey } from "@/type/Order";
 
+export const timeStampToTimeStr = (timeStamp: number) => {
+  const date = new Date(timeStamp * 1000);
+  const HH = `0${date.getHours()}`.slice(-2);
+  const mm = `0${date.getMinutes()}`.slice(-2);
+  const ss = `0${date.getSeconds()}`.slice(-2);
+
+  return `${HH}:${mm}:${ss}`;
+};
+
 export const calcReceivingTime = (timeKey: ReceivingTimeKey, currentTime: Date) => {
   const timeStamp = currentTime.getTime();
   switch (timeKey) {
