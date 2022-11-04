@@ -1,7 +1,7 @@
-import { Dispatch, FC, SetStateAction } from "react";
-import { Box, createStyles, Text } from "@mantine/core";
-import { ReceivingTimeKey } from "@/type/Order";
 import { GreenButton } from "@/components/Element/Button/GreenButton";
+import { ReceivingTimeKey } from "@/type/Order";
+import { Box, createStyles, Text } from "@mantine/core";
+import { Dispatch, FC, SetStateAction } from "react";
 
 type Props = {
   receivingTimeKey: ReceivingTimeKey;
@@ -43,6 +43,6 @@ const useStyles = createStyles(() => ({
     alignItems: "center",
     gap: "10px",
     padding: "10px",
-    backgroundColor: "#D3F9D8",
+    backgroundColor: "#FFEBCD",
   },
 }));

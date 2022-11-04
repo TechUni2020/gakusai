@@ -11,7 +11,7 @@ export const GreenButton: FC<Props> = ({ label, onClick, hasActive }) => {
   const { classes } = useStyles();
 
   return (
-    <Button className={hasActive ? classes.active : ""} color="green" variant="white" onClick={onClick}>
+    <Button className={hasActive ? classes.active : ""} color="orange" variant="white" onClick={onClick}>
       {label}
     </Button>
   );
@@ -19,7 +19,7 @@ export const GreenButton: FC<Props> = ({ label, onClick, hasActive }) => {
 
 const useStyles = createStyles(() => ({
   active: {
-    backgroundColor: "green",
+    backgroundColor: "orange",
     color: "white",
   },
 }));
