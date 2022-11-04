@@ -1,33 +1,42 @@
 import { FC } from "react";
-import { Text, Box, Card, createStyles } from "@mantine/core";
+import { Text, Box, Card, createStyles, Center, Divider, Image } from "@mantine/core";
 import { useOrderState } from "@/globalStates/atoms/orderState";
 import { OrderDetailList } from "@/components/OrderDetailList";
+import { timeStampToTimeStr } from "@/lib/util/date-utils";
 
 export const Completed: FC = () => {
   const { classes } = useStyles();
   const { order } = useOrderState();
 
-  if (order == null) return null;
+  if (order === null) return null;
   const { orderId, orderedAt, detail, sumPrice } = order;
 
+  const formattedOrderedAt = timeStampToTimeStr(orderedAt.seconds);
   return (
     <Card className={classes.card}>
-      <Box>ご注文ありがとうございます。</Box>
+      <Center>
+        <Text>ご注文ありがとうございます</Text>
+      </Center>
+      <Divider my="sm" />
+
       <Box className={classes.orderColumnWrapper}>
-        <Box>お客様番号</Box>
-        <Box className={classes.orderNumber}>{`『${orderId}』`}</Box>
+        <Image src="/kousyo.png" alt="関学の校章" />
+        <Box>
+          <Text>ご注文番号：</Text>
+          <Text className={classes.orderNumber}>{`『${orderId}』`}</Text>
+        </Box>
       </Box>
-      <Box className={classes.orderColumnWrapper}>
-        <Box>注文時間</Box>
-        <Text>{String(orderedAt)}</Text>
-      </Box>
-      <OrderDetailList list={detail} />
-      <Box className={classes.orderColumnWrapper}>
-        <Box>合計金額</Box>
+      <Text align="center">{formattedOrderedAt}に受付しました</Text>
+      <br />
+      <Text align="center">この画面をスクショして</Text>
+      <Text align="center">スタッフにお見せください!</Text>
+      <Divider my="sm" />
+      <OrderDetailList textColor={"white"} list={detail} />
+      <Divider my="sm" />
+      <Box className={classes.sumPriceWrapper}>
+        <Text size="sm">合計金額</Text>
         <Text size="xl">{sumPrice}円</Text>
       </Box>
-
-      <Box>この画面をスクショしてスタッフに見せてください！</Box>
     </Card>
   );
 };
@@ -49,5 +58,11 @@ const useStyles = createStyles({
   },
   orderNumber: {
     fontSize: "30px",
+  },
+  sumPriceWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "end",
+    margin: 7,
   },
 });
