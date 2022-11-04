@@ -11,8 +11,8 @@ export type Menu = {
 export type MenuCollection = {
   name: string;
   price: number;
-  categoryId: string;
-  isSoldOut: boolean;
+  category_id: string;
+  is_sold_out: boolean;
   image: string;
   description: string;
 };
