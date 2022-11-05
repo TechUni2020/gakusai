@@ -1,4 +1,4 @@
 export const TOKEN_LABEL = {
   USER_ID: "uid",
-  ORDER_ID: "order_id",
+  ORDER_STATE: "order-state",
 };

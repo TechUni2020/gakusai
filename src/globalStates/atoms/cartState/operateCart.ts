@@ -14,6 +14,7 @@ export const OperateCart = () => {
       const newItem = {
         menuId: item.id,
         name: item.name,
+        category: item.categoryName,
         quantity: 1,
         price: item.price,
       };

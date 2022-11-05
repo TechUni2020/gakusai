@@ -9,11 +9,10 @@ import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const isSignedIn = authService.isSignedIn();
 
   useEffect(() => {
-    if (!isSignedIn) router.push(pagesPath.auth.$url());
-    if (orderService.getOrderNum() != null) router.push(pagesPath.completed.$url());
+    if (!authService.isSignedIn()) router.push(pagesPath.auth.$url());
+    if (!orderService.hasOrderState()) router.push(pagesPath.completed.$url());
   }, []);
 
   return (
