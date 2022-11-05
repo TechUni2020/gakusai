@@ -31,6 +31,11 @@ export const ReceivingPredictionTime: FC<Props> = ({ receivingTimeKey, setReceiv
           hasActive={receivingTimeKey === "10min"}
           onClick={() => setReceivingTimeKey("10min")}
         />
+        <GreenButton
+          label="30分後"
+          hasActive={receivingTimeKey === "30min"}
+          onClick={() => setReceivingTimeKey("30min")}
+        />
       </Box>
     </Box>
   );
