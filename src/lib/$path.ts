@@ -11,6 +11,7 @@ export const pagesPath = {
 export type PagesPath = typeof pagesPath
 
 export const staticPath = {
+  TechUni_svg: '/TechUni.svg',
   favicon_ico: '/favicon.ico',
   vercel_svg: '/vercel.svg'
 } as const
