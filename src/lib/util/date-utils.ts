@@ -23,6 +23,10 @@ export const calcReceivingTime = (timeKey: ReceivingTimeKey, currentTime: Date) 
       const tenMinToMs = 1000 * 60 * 10;
       return new Date(timeStamp + tenMinToMs);
       break;
+    case "15min":
+      const fifteenMinToMs = 1000 * 60 * 15;
+      return new Date(timeStamp + fifteenMinToMs);
+      break;
     case "20min":
       const twentyMinToMs = 1000 * 60 * 20;
       return new Date(timeStamp + twentyMinToMs);
