@@ -1,14 +1,14 @@
+import { ActionIcon, Button, Center, Divider, Grid, Group, Popover } from "@mantine/core";
+import { IconShoppingCart } from "@tabler/icons";
 import { FC, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { IconShoppingCart } from "@tabler/icons";
-import { ActionIcon, Button, Center, Divider, Grid, Group, Popover } from "@mantine/core";
 
+import { ConfirmOrderModal } from "@/components/ConfirmOrderModal";
 import { CartState } from "@/globalStates/atoms/cartState";
 import { OperateCart } from "@/globalStates/atoms/cartState/operateCart";
 import { totalPriceSelector } from "@/globalStates/atoms/cartState/selectors/totalPriceSelector";
 import { totalQuantitySelector } from "@/globalStates/atoms/cartState/selectors/totalQuantitySelector";
 import { ItemInCart } from "@/type/Cart";
-import { ConfirmOrderModal } from "@/components/ConfirmOrderModal";
 
 export const CartToggle: FC = () => {
   const [openedCartToggle, setOpenedCartToggle] = useState(false);
@@ -28,7 +28,7 @@ export const CartToggle: FC = () => {
     <>
       <ConfirmOrderModal opened={openedConfirmModal} setOpened={setOpenedConfirmModal} />
 
-      <Popover opened={openedCartToggle} onChange={setOpenedCartToggle} position="bottom">
+      <Popover opened={openedCartToggle} onChange={setOpenedCartToggle} position="bottom" width={"380px"}>
         <Popover.Target>
           <Group onClick={() => setOpenedCartToggle((isOpen) => !isOpen)} mx={24} my={2}>
             <ActionIcon size={48}>
@@ -38,7 +38,7 @@ export const CartToggle: FC = () => {
           </Group>
         </Popover.Target>
 
-        <Popover.Dropdown mx={24}>
+        <Popover.Dropdown>
           {cart.length ? (
             <>
               {cart.map((item: ItemInCart) => (
@@ -53,11 +53,11 @@ export const CartToggle: FC = () => {
                     <Grid.Col span="auto">×{item.quantity}</Grid.Col>
                     <Grid.Col span="auto">
                       <Grid mt={2}>
-                        <Button size="xs" color="lime" onClick={() => incrementItem(item)}>
+                        <Button size="xs" mr={2} variant="filled" color="orange" onClick={() => incrementItem(item)}>
                           +
                         </Button>
-                        <Button size="xs" color="lime" onClick={() => decrementItem(item)}>
-                          -
+                        <Button size="xs" variant="filled" color="orange" onClick={() => decrementItem(item)}>
+                          −
                         </Button>
                       </Grid>
                     </Grid.Col>
@@ -69,7 +69,7 @@ export const CartToggle: FC = () => {
               <Center> カートの合計金額: {totalPrice} 円</Center>
               <br />
               <Center>
-                <Button color="lime" onClick={onClickConfirmOrder}>
+                <Button variant="filled" color="orange" onClick={onClickConfirmOrder}>
                   購入
                 </Button>
               </Center>
